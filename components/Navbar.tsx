@@ -1,12 +1,27 @@
 import React from 'react'
 import {Box} from "lucide-react";
 import Button from "./ui/Button";
+import { useOutletContext } from "react-router";
 
 const Navbar = () => {
-    const isSignedIn = false;
-    const username = 'akshay';
+    const { isSignedIn, userName, signIn, signOut } = useOutletContext<AuthContext>();
 
-    const handleAuthClick = async () =>{};
+    const handleAuthClick = async () =>{
+        if (isSignedIn){
+            try {
+                await signOut();
+            } catch (e) {
+                console.error(`Error while signed out: ${e}`);
+            }
+            return;
+        }
+
+        try {
+            await signIn();
+        } catch (e) {
+            console.error(`Error while signed in: ${e}`);
+        }
+    };
 
     return (
         <header className={"navbar"}>
@@ -29,7 +44,7 @@ const Navbar = () => {
                     {isSignedIn ? (
                         <>
                             <span>
-                                {username ? `Hi, ${username}` : 'Signed In'}
+                                {userName ? `Hi, ${userName}` : 'Signed In'}
                             </span>
                             <Button size="sm" className={"btn"} onClick={handleAuthClick}>
                                 Log Out
