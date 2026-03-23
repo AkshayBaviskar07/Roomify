@@ -2,6 +2,7 @@ import React, {useCallback, useEffect, useRef, useState} from 'react'
 import {useOutletContext} from "react-router";
 import {CheckCircle2, ImageIcon, UploadIcon} from "lucide-react";
 import {PROGRESS_INCREMENT, REDIRECT_DELAY_MS, PROGRESS_INTERVAL_MS} from "../lib/constants";
+import type {AuthContext} from "../type";
 
 interface UploadProps {
     onComplete?: (base64Data: string) => void;
@@ -15,6 +16,10 @@ const Upload = ({ onComplete }: UploadProps) => {
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     const { isSignedIn } = useOutletContext<AuthContext>();
+
+    const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
+    const ALLOWED_EXTENSIONS = '.jpg,.jpeg,.png,.webp';
+    const isValidFile = (file: File): boolean => ALLOWED_TYPES.includes(file.type)
 
     useEffect(() => {
         return () => {
@@ -81,8 +86,7 @@ const Upload = ({ onComplete }: UploadProps) => {
         if (!isSignedIn) return;
 
         const droppedFile = e.dataTransfer.files[0];
-        const allowedTypes = ['image/jpeg', 'image/png'];
-        if (droppedFile && allowedTypes.includes(droppedFile.type)) {
+        if (droppedFile && isValidFile(droppedFile)) {
             processFile(droppedFile);
         }
     };
@@ -91,7 +95,7 @@ const Upload = ({ onComplete }: UploadProps) => {
         if (!isSignedIn) return;
 
         const selectedFile = e.target.files?.[0];
-        if (selectedFile) {
+        if (selectedFile && isValidFile(selectedFile)) {
             processFile(selectedFile);
         }
     };
