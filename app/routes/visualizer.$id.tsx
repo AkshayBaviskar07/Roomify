@@ -9,7 +9,7 @@ const VisualizerId = () => {
         <section>
             <h1> {name || 'Untitled Project'}</h1>
 
-            <div className="visiualizer">
+            <div className="visualizer">
                 {initialImage && (
                     <div className="image-container">
                         <h2>Initial image</h2>
