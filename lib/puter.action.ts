@@ -24,7 +24,7 @@ export const createProject = async ({ item }: CreateProjectParams): Promise<Desi
 
     const hostedRender = projectId && item.renderedImage ?
         await uploadImageToHosting({
-            hosting, url: item.renderedImage, projectId, label:'source'
+            hosting, url: item.renderedImage, projectId, label:'rendered'
         }): null;
 
     const resolvedSource = hostedSource?.url || (isHostedUrl(item.sourceImage) ? item.sourceImage : '');
