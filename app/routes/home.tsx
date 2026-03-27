@@ -25,7 +25,9 @@ export default function Home() {
         const name = `Residence ${newId}`;
 
         const newItem = {
-            id: newId, name, sourceImage: base64Image,
+            id: newId,
+            name,
+            sourceImage: base64Image,
             renderedImage: undefined,
             timestamp: Date.now()
         }
