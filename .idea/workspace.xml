@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="c791ff4c-b9f6-4798-a001-e0a453750358" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Upload.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Upload.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/home.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/visualizer.$id.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/visualizer.$id.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/puter.action.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/puter.action.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/type.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/type.d.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -17,8 +19,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -40,7 +42,7 @@
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;upload-files&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;hosting-images&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/JS Projects/Roomify&quot;,
@@ -81,6 +83,8 @@
       <workItem from="1774180210847" duration="1886000" />
       <workItem from="1774248373874" duration="6855000" />
       <workItem from="1774271946872" duration="3704000" />
+      <workItem from="1774345228349" duration="3913000" />
+      <workItem from="1774618976971" duration="4745000" />
     </task>
     <servers />
   </component>
