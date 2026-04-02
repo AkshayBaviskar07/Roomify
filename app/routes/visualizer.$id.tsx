@@ -4,6 +4,7 @@ import {generate3dView} from "../../lib/ai.actions";
 import {Box, Download, RefreshCcw, Share2, X} from "lucide-react";
 import Button from "../../components/ui/Button";
 import {createProject, getProjectById} from "../../lib/puter.action";
+import {ReactCompareSlider, ReactCompareSliderImage} from "react-compare-slider";
 
 const VisualizerId = () => {
     const { id } = useParams();
@@ -41,7 +42,7 @@ const VisualizerId = () => {
                 const saved = await createProject({ item: updatedItem, visibility: 'private' });
                 if (saved) {
                     setProject(saved);
-                    setCurrentImage(saved.renderedImage || result.renderedImage);
+                    setCurrentImage(saved.renderedImage || result.renderedImage || null);
                 }
             }
         } catch (error) {
@@ -50,6 +51,17 @@ const VisualizerId = () => {
             setIsProcessing(false);
         }
     }
+
+    const handleExport = () => {
+        if (!currentImage) return;
+        
+        const link = document.createElement('a');
+        link.href = currentImage;
+        link.download = `roomify-${project?.name || `render-${id}`}-${Date.now()}.png`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
 
     useEffect(() => {
         let isMounted = true;
@@ -120,11 +132,11 @@ const VisualizerId = () => {
                         <div className='panel-actions'>
                             <Button
                                 size="sm"
-                                onClick={() => {}}
+                                onClick={handleExport}
                                 className="export"
                                 disabled={!currentImage}
                             >
-                                <Download className='w-4 h-4 mr-2' /> Export
+                                <Download className='w-4 h-4 mr-2'/> Export
                             </Button>
 
                             <Button size="sm" onClick={() => {}} className="share">
@@ -150,6 +162,39 @@ const VisualizerId = () => {
                                             <span className='subtitle'>Generating your 3d visualization</span>
                                         </div>
                                     </div>
+                                )}
+                            </div>
+                        )}
+                    </div>
+                </div>
+
+                <div className="panel compare">
+                    <div className="panel-header">
+                        <div className="panel-meta">
+                            <p>Comparison</p>
+                            <h3>Before and After</h3>
+                        </div>
+                        <div className="hint">Drag to compare</div>
+                    </div>
+
+                    <div className="compare-stage">
+                        {project?.sourceImage && currentImage ? (
+                            <ReactCompareSlider
+                                defaultValue={50}
+                                style={{ width:'100%', height:'auto' }}
+                                itemOne={
+                                    <ReactCompareSliderImage
+                                        src={project?.sourceImage} alt="Before" className="compare-img"/>
+                                }
+                                itemTwo={
+                                    <ReactCompareSliderImage
+                                        src={currentImage || project?.renderedImage} alt="After" className="compare-img"/>
+                                }
+                            />
+                        ):(
+                            <div className="compare-fallback">
+                                {project?.sourceImage && (
+                                    <img src={project.sourceImage} alt="Before" className="compare-img" />
                                 )}
                             </div>
                         )}
